@@ -18,91 +18,96 @@
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        {{-- @can('role', ['admin', 'pimpinan']) --}}
-        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon">
-                    <img src="{{ url('assets/img/favicon.png') }}">
-                </div>
-                <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
-            </a>
-            <hr class="sidebar-divider my-0">
-            @can('role', ['admin', 'pimpinan'])
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span></a>
-                </li>
-            @endcan
-            @can('role', 'admin')
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admin') }}">
-                        <i class="bi bi-people-fill"></i>
-                        <span>User</span></a>
-                </li>
-            @endcan
-            @can('role', 'admin')
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('produk') }}">
-                        <i class="bi bi-box2-heart-fill"></i>
-                        <span>Produk</span></a>
-                </li>
-            @endcan
-            @can('role', 'admin')
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admin') }}">
-                        <i class="bi bi-handbag-fill"></i>
-                        <span>Pesanan</span></a>
-                </li>
-            @endcan
-            {{-- user --}}
-            @can('role', 'user')
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('dashboardUser') }}">
-                        <i class="bi bi-house-fill"></i>
-                        <span>Home</span></a>
-                </li>
-            @endcan
-
-            @can('role', 'user')
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('cctv') }}">
-                        <i class="bi bi-webcam-fill"></i>
-                        <span>CCTV</span></a>
-                </li>
-            @endcan
-
-            @can('role', 'user')
-                {{-- <li class="nav-item active">
-                    <a class="nav-link" href="">
-                        <i class="bi bi-box-seam-fill"></i>
-                        <span>Produk</span></a>
-                </li> --}}
-                <li class="nav-item active">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
-                        aria-expanded="true" aria-controls="collapseForm">
-                        <i class="bi bi-box-seam-fill"></i>
-                        <span>Produk</span>
-                    </a>
-                    <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Produk</h6>
-                            <a class="collapse-item" href="{{ route('monitor') }}">Monitor</a>
-                            <a class="collapse-item" href="{{ route('cpu') }}">CPU</a>
-                            <a class="collapse-item" href="{{ route('hardware') }}">Hardware</a>
-                        </div>
+        @can('role', ['admin', 'pimpinan', 'user'])
+            <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon">
+                        <img src="{{ url('assets/img/favicon.png') }}">
                     </div>
-                </li>
-            @endcan
+                    <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                @can('role', ['admin', 'pimpinan'])
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                @endcan
+                @can('role', 'admin')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('admin') }}">
+                            <i class="bi bi-people-fill"></i>
+                            <span>User</span></a>
+                    </li>
+                @endcan
+                @can('role', 'admin')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('produk') }}">
+                            <i class="bi bi-box2-heart-fill"></i>
+                            <span>Produk</span></a>
+                    </li>
+                @endcan
+                @can('role', 'admin')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('pengirim') }}">
+                            <i class="bi bi-send-check-fill"></i>
+                            <span>Pengirim</span></a>
+                    </li>
+                @endcan
+                @can('role', 'admin')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('pesanan') }}">
+                            <i class="bi bi-handbag-fill"></i>
+                            <span>Pesanan</span></a>
+                    </li>
+                @endcan
+                {{-- user --}}
+                @can('role', 'user')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('dashboardUser') }}">
+                            <i class="bi bi-house-fill"></i>
+                            <span>Home</span></a>
+                    </li>
+                @endcan
 
-            @can('role', ['admin', 'pimpinan'])
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('pimpinan') }}">
-                        <i class="fas fa-fw fa-list"></i>
-                        <span>Laporan</span></a>
-                </li>
-            @endcan
-        </ul>
+                @can('role', 'user')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('cctv') }}">
+                            <i class="bi bi-webcam-fill"></i>
+                            <span>CCTV</span></a>
+                    </li>
+                @endcan
+
+                @can('role', 'user')
+                    <li class="nav-item active">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm"
+                            aria-expanded="true" aria-controls="collapseForm">
+                            <i class="bi bi-box-seam-fill"></i>
+                            <span>Produk</span>
+                        </a>
+                        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Produk</h6>
+                                <a class="collapse-item" href="{{ route('monitor') }}">Notebook</a>
+                                <a class="collapse-item" href="{{ route('ups') }}">UPS</a>
+                                <a class="collapse-item" href="{{ route('cable') }}">Cable</a>
+                                <a class="collapse-item" href="{{ route('cpu') }}">PC</a>
+                                <a class="collapse-item" href="{{ route('hardware') }}">Hardware</a>
+                            </div>
+                        </div>
+                    </li>
+                @endcan
+
+                @can('role', ['admin', 'pimpinan'])
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('pimpinan') }}">
+                            <i class="fas fa-fw fa-list"></i>
+                            <span>Laporan</span></a>
+                    </li>
+                @endcan
+            </ul>
+        @endcan
         {{-- @endcan --}}
 
         <!-- Sidebar -->
@@ -124,8 +129,9 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav ml-auto" id="navbarSupportedContent">
                             <li class="nav-item dropdown no-arrow">
-                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                     <i class="fas fa-search fa-fw"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
@@ -145,28 +151,6 @@
                                 </div>
                             </li>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                {{-- <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page"
-                                                href="{{ route('dashboardUser') }}">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="{{ route('cctv') }}">CCTV</a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle active" href="#" id="userDropdown"
-                                                role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <span class="ml-2 d-none d-lg-inline text-white small">Produk
-                                                </span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                                aria-labelledby="userDropdown">
-                                                <a class="dropdown-item" href="{{ route('monitor') }}">Monitor</a>
-                                                <a class="dropdown-item" href="{{ route('cpu') }}">CPU</a>
-                                                <hr class="dropdown-divider">
-                                                <a class="dropdown-item" href="{{ route('hardware') }}">Hardware PC</a>
-                                            </div>
-                                        </li> --}}
                                 <div class="topbar-divider d-none d-sm-block"></div>
                                 @guest('admin')
                                     <li class="nav-item dropdown no-arrow">
@@ -272,8 +256,8 @@
 
             </div>
         </div>
-        @can('role', 'user')    
-            <a href="#" class="help-center  d-flex">
+        @can('role', 'user')
+            <a href="{{ route('chat') }}" class="help-center  d-flex">
                 <div class="content-help">
                     <p>Butuh bantuan?</p>
                 </div>

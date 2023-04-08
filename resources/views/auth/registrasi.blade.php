@@ -28,14 +28,8 @@
                     <div class="card-body">
                         <h1 class="text-center mt-2"><span class="bg-dark text-light">BUY</span> Online</h1>
                         <hr>
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-
-                        @endif
-                        <h1 class="text-center mt-3 font fw-bold"><span class="">Login</span></h1>
-                        <form action="" method="post" class="form">
+                        <h1 class="text-center mt-3 font fw-bold"><span class="">Register</span></h1>
+                        {{-- <form action="" method="post" class="form">
                             @csrf
                             <div class="form-group">
                                 <label for="" class="fw-bold">Email</label>
@@ -55,17 +49,73 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- <div class="form-group mt-2">
+                            <div class="form-group mt-2">
                                 <input type="checkbox" class="from-check-input">
                                 <label for="" class="from-check-label">
                                     Show Password
                                 </label>
-                            </div> --}}
+                            </div>
                             <div class="d-flex ms-auto w-100 justify-content-end gap-2">
                                 <a href="{{ route('admin.create') }}" class="btn btn-outline-dark mt-3">Register</a>
                                 <button type="submit" name="submit"
                                     class="btn btn-dark btn-block mt-3 ">Login</button>
-                                {{-- <a href="" class="btn btn-outline-dark mt-3">Register</a> --}}
+                                {{-- <a href="" class="btn btn-outline-dark mt-3">Register</a>
+                            </div>
+                        </form> --}}
+
+                        <form action="" method="post" class="form-basic">
+                            @csrf
+                            <div class="form-group">
+                                <label for="" class="fw-bold">Nama</label>
+                                <input type="text" name="nama"
+                                    class="form-control
+                                @error('nama')
+                                is-invalid
+                                @enderror"
+                                    placeholder="Masukan Nama" value="{{ old('nama') }}">
+
+                                @error('nama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="" class="fw-bold">Email</label>
+                                <input type="email" name="email"
+                                    class="form-control
+                                @error('email')
+                                is-invalid
+                                @enderror"
+                                    placeholder="Masukan Email" value="{{ old('email') }}">
+
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="" class="fw-bold">No Handphone</label>
+                                <input type="text" name="no_hp"
+                                    class="form-control
+                                @error('no_hp')
+                                is-invalid
+                                @enderror"
+                                    placeholder="Masukan No Handphone" value="{{ old('no_hp') }}">
+
+                                @error('no_hp')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="" class="fw-bold">Password</label>
+                                <input type="password" name="password"
+                                    class="form-control
+                                @error('password')
+                                is-invalid
+                                @enderror"
+                                    placeholder="Masukan Password">
+                            </div>
+                            <div class="form-group d-flex ms-auto w-100 justify-content-end gap-2">
+                                <button type="submit" class="btn btn-dark mt-3">Submit</button>
+                                <a href="{{ route('admin.login') }}" class="btn btn-outline-dark mt-3">Cancle</a>
                             </div>
                         </form>
                     </div>

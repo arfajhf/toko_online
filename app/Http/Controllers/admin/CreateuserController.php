@@ -10,7 +10,7 @@ class CreateuserController extends Controller
 {
     public function index()
     {
-        return view('admin.admin1.createuser');
+        return view('auth.registrasi');
     }
 
     public function create(Request $request)
@@ -30,7 +30,7 @@ class CreateuserController extends Controller
             'role' => 'user',
         ]);
 
-        return redirect()->route('admin')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.login')->with('success', 'Registrasi berhasil');
     }
 
     public function edit($id)

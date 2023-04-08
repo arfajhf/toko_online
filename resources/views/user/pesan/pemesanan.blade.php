@@ -15,16 +15,21 @@
                         <h1 class="text-right"><span class="bg-dark text-light">BUY</span> Online</h1>
                         <hr>
                         <h3 class="fw-bold">Checkout</h3>
-                        <form action="#" method="post">
+                        <?php $random = rand(10000, 99999) ?>
+                        <form action="/pemesanan/{{ $data->id }}" method="POST">
                             @csrf
+                            <input type="hidden" name="harga" value="{{ $data->harga }}{{ old('id_user') }}">
+                            <input type="hidden" name="id_barang" value="{{ $data->id }}{{ old('id_user') }}">
+                            <input type="hidden" name="id_user" value="{{ Auth::user()->id }}{{ old('id_user') }}">
+                            <input type="hidden" name="no_transaksi" value="{{ $random }}">
                             <label for="" class="fw-bold" style="font-size: 18px">Nama Penerima</label>
                             <input type="text" class="form-control shadow1" name="nama_pemesan"
-                                placeholder="Contoh: Ilham Alvariq">
-                            <label for="" class="fw-bold mt-1" style="font-size: 18px">Jumlah</label>
-                            <input type="number" class="form-control shadow1" name="jumlah_beli" value="0">
-                                {{-- placeholder="Contoh: 0823********"> --}}
+                                placeholder="Contoh: Ilham Alvariq" value="{{ old('nama_pemesan') }}">
+                            <label for="" class="fw-bold mt-1" style="font-size: 18px">Jumlah Beli</label>
+                            <input type="number" class="form-control shadow1" name="jumlah_beli" value="{{ old('jumlah_beli'), '0' }}"
+                                placeholder="0">
                             <label for="" class="fw-bold mt-1" style="font-size: 18px">Alamat Pengiriman</label>
-                            <textarea name="alamat" class="form-control shadow1" placeholder="Contoh: Jl.Sidamulih No.04..."></textarea>
+                            <textarea name="alamat" class="form-control shadow1" placeholder="Contoh: Jl.Sidamulih No.04...">{{ old('alamat') }}</textarea>
                             {{-- product --}}
                             <label for="" class="fw-bold mt-1" style="font-size: 18px"> Product Pilihan Anda</label>
                             <div class="card shadow">
@@ -41,7 +46,8 @@
                                             <div class="row mt-4">
                                                 <div class="col">Nomor Transaksi</div>
                                                 <div class="col-1">:</div>
-                                                <div class="col">099897</div>
+                                                <div class="col">{{ $random }}</div>
+
                                             </div>
 
                                             <div class="row">
@@ -56,6 +62,9 @@
                                             </div>
 
                                             <button class="btn btn-dark mt-4 rounded-0 w-100">Checkout Sekarang</button>
+                                            <div class="text-warning" style="font-size: 14px">
+                                                No.transaksi akan berubah setiap di refresh
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

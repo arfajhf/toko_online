@@ -10,4 +10,9 @@ class Data_barang extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function barang()
+    {
+        return $this->hasMany(app('App\Models\Data_pemesanan'));
+    }
 }

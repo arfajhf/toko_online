@@ -5,10 +5,10 @@
         <section class="container bg-primary rounded">
             <div class="row">
                 <div class="col-lg-6 hero-img">
-                    <img src="{{ url('assets/img/monitor.png') }}" class="img-fluid" alt="">
+                    <img src="{{ url('assets/img/ups.png') }}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-6 d-flex flex-column justify-content-center">
-                    <h1 class="text-center text-light">Kami juga menyediakan Notebook yang terjamin kuatitasnya</h1>
+                    <h1 class="text-center text-light">Kami juga produk UPS yang sangat terjamin kuatitasnya</h1>
                 </div>
             </div>
         </section>
@@ -27,7 +27,7 @@
                     @foreach ($data as $row)
                         <div class="col col-md-3">
                             <a href="/view/{{ $row->id }}" style="text-decoration: none" class="text-dark">
-                                <div class="card mt-4 shadow p-3 mb-5  rounded">
+                                <div class="card mt-4 shadow p-3 mb-5  rounded"     >
                                     <div class="card-body text-center">
                                         <img src="{{ url('gambar/' . $row->gambar) }}" class="card-img-top" alt=""
                                             width="40%" height="40%">

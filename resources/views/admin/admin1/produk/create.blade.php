@@ -50,6 +50,19 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="" class="fw-bold">Deskripsi</label>
+                                        <textarea name="deskripsi"
+                                            class="form-control
+                                        @error('deskripsi')
+                                            is-invalid
+                                        @enderror"
+                                            placeholder="Masukan deskripsi barang">{{ old('deskripsi') }}</textarea>
+
+                                        @error('deskripsi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
@@ -77,16 +90,18 @@
                                         @enderror">
                                             <option selected>Pilih Kategori Barang</option>
                                             <option value="cctv">cctv</option>
-                                            <option value="monitor">monitor</option>
-                                            <option value="cpu">cpu</option>
+                                            <option value="notebook">notebook</option>
+                                            <option value="pc">pc</option>
                                             <option value="hardware">hardware</option>
+                                            <option value="ups">ups</option>
+                                            <option value="cable">cable</option>
                                         </select>
                                         @error('kategori')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="fw-bold">Berat</label>
+                                        <label for="" class="fw-bold">Berat Barang</label>
                                         <input type="number" name="berat"
                                             class="form-control
                                         @error('berat')
@@ -99,7 +114,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="" class="fw-bold">Berat</label>
+                                        <label for="" class="fw-bold">Masa Barang</label>
                                         <select name="masa" id=""
                                             class="form-control @error('masa')
                                             is-invalid
@@ -115,19 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="" class="fw-bold">Deskripsi</label>
-                                        <textarea name="deskripsi"
-                                            class="form-control
-                                        @error('deskripsi')
-                                            is-invalid
-                                        @enderror"
-                                            placeholder="Masukan deskripsi barang">{{ old('deskripsi') }}</textarea>
 
-                                        @error('deskripsi')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

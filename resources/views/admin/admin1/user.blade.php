@@ -19,7 +19,7 @@
                 <?php
                     $no = 1;
                 ?>
-                <a href="{{ route('admin.create') }}" class="btn btn-outline-primary">Tambah User</a>
+                {{-- <a href="{{ route('admin.create') }}" class="btn btn-outline-primary">Tambah User</a> --}}
 
                 <table class="border-dark table mt-5">
                     <tr>

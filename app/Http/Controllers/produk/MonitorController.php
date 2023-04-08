@@ -10,7 +10,7 @@ class MonitorController extends Controller
 {
     public function index(){
         $data = Data_barang::all()
-        ->where('kategori','like','monitor');
+        ->where('kategori','like','notebook');
         return view('user.produk.monitor', ['data' => $data]);
     }
 }

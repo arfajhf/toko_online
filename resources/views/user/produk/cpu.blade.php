@@ -8,7 +8,7 @@
                     <img src="{{ url('assets/img/cpu.png') }}" class="img-fluid" alt="">
                 </div>
                 <div class="col-md-6 d-flex flex-column justify-content-center">
-                    <h1 class="text-center text-light">Kami juga menyediakan monitor yang terjamin kuatitasnya</h1>
+                    <h1 class="text-center text-light">Kami juga menyediakan PC yang terjamin kuatitasnya</h1>
                 </div>
             </div>
         </section>
