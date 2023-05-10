@@ -90,7 +90,8 @@ Route::group([
         Route::get('/chat', 'user\ChatController@index')->name('chat');
 
         // pimpinan
-        Route::view('/pimpinan', 'admin.pimpinan.coba')->name('pimpinan')->middleware('can:role,"admin","pimpinan"');
+        // Route::view('/pimpinan', 'admin.pimpinan.coba')->name('pimpinan')->middleware('can:role,"admin","pimpinan"');
+        Route::get('/laporan', 'admin\LaporanController@index')->name('laporan')->middleware('can:role,"admin","pimpinan"');
 
 
         // admin

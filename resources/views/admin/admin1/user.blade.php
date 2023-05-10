@@ -35,7 +35,7 @@
                         <td>{{ $row -> email }}</td>
                         <td>{{ $row -> no_hp }}</td>
                         <td>
-                            <a href="/admin/edit/{{ $row -> id }}" class="btn btn-outline-success">Edit</a>
+                            {{-- <a href="/admin/edit/{{ $row -> id }}" class="btn btn-outline-success">Edit</a> --}}
                             <form action="/admin/delete/{{ $row -> id }}" method="get" class="form-basic d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Apa anda yakin ingin menghapus data ini?')">Delete</button>
