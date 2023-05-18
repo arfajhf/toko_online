@@ -22,17 +22,17 @@ class DashboardController extends Controller
         // barang
         $barang = Data_barang::all();
         $barangbaruCount = Data_barang::whereKondisi('baru')->count();
-        $barangbaruPercentange = $barangbaruCount ? $barangbaruCount / $barang->count() * 100 : 0;
+        $barangbaruPercentange = $barangbaruCount / $barang->count() * 100;
         $barangbekasCount = Data_barang::whereKondisi('bekas')->count();
-        $barangbekasPercentange = $barangbaruCount ? $barangbekasCount / $barang->count() * 100 : 0;
+        $barangbekasPercentange = $barangbekasCount / $barang->count() * 100;
         // pesanan
         $pesanCount = Data_pemesanan::count();
         $dikemasCount = Data_pemesanan::where('status','dikemas')->count();
-        $dikemasPercentange = $dikemasCount ? $dikemasCount / $pesanCount * 100 : 0;
+        $dikemasPercentange = $dikemasCount / $pesanCount * 100;
         $dikirimCount = Data_pemesanan::where('status','dikirim')->count();
-        $dikirimPercentange = $dikirimCount ? $dikirimCount / $pesanCount * 100 : 0;
+        $dikirimPercentange = $dikirimCount / $pesanCount * 100;
         $selesaiCount = Data_pemesanan::where('status','selesai')->count();
-        $selesaiPercentange = $selesaiCount ? $dikirimCount / $pesanCount * 100 : 0;
+        $selesaiPercentange = $selesaiCount / $pesanCount * 100;
         $view = Data_barang::all()
         ->where('id','<','4');
 
