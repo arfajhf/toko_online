@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-
-
-    <title>chat app - Bootdey.com</title>
+    <title>Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -281,63 +280,6 @@
     <div class="container">
         <div class="row clearfix justify-content-center">
             <div class="col-lg-8">
-                {{-- @can('role', 'admin')
-                    <div class="card chat-app">
-                        <div id="plist" class="people-list">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </div>
-                            <ul class="list-unstyled chat-list mt-2 mb-0">
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Vincent Porter</div>
-                                        <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix active">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Aiden Chavez</div>
-                                        <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Mike Thomas</div>
-                                        <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Christian Kelly</div>
-                                        <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Monica Ward</div>
-                                        <div class="status"> <i class="fa fa-circle online"></i> online </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-                                    <div class="about">
-                                        <div class="name">Dean Henry</div>
-                                        <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                @endcan --}}
                 @can('role', 'user')
                     <div class="card">
                         <div class="chat">
@@ -353,54 +295,20 @@
                                             {{-- <small>Last seen: 2 hours ago</small> --}}
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-6 hidden-sm text-right">
-                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i
-                                            class="fa fa-camera"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i
-                                            class="fa fa-image"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i
-                                            class="fa fa-cogs"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i
-                                            class="fa fa-question"></i></a>
-                                </div> --}}
+
                                 </div>
                             </div>
-                            <div class="chat-history" id="data-message">
-                                {{-- <ul class="m-b-0"> --}}
-                                {{-- <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:12 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Are we meeting today?</div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:15 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Project has been already finished and I have
-                                        results to show you.</div>
-                                </li> --}}
-                                {{-- <li class="clearfix">
-                                    <div class="message-data text-right justify-content-between">
-                                        <span class="message-data-time">10:10 AM, Today</span>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
-                                    </div>
-                                    <div class="message other-message float-right"> Apakah barang yang toko ini sediakan bisa berfungsi dengan baik </div>
-                                </li>
-                                <li class="clearfix">
-                                    <div class="message-data">
-                                        <span class="message-data-time">10:11 AM, Today</span>
-                                    </div>
-                                    <div class="message my-message">Tentu, kami menjamin barang yang kami jual sangat berkualitas dan bisa bekerja dengan sangat baik</div>
-                                </li>
-                            </ul> --}}
+                            <div class="chat-history">
+                                <ul class="m-b-0" id="data-message">
+
+                                </ul>
                             </div>
                             <div class="chat-message clearfix">
                                 <div class="input-group mb-0">
                                     <input type="text" class="form-control justify-content-between"
                                         placeholder="Enter text here..." id="message">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-dark">Send</button>
+                                        <button id="btn-send" class="btn btn-dark">Send</button>
                                     </div>
                                 </div>
                             </div>
@@ -803,57 +711,109 @@
                         </div>
                     </div>
 
-
-                    <p class="text-center top_spac"> Design by <a target="_blank"
-                            href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
-
                 </div>
             </div>
         </body>
 
         </html>
     @endcan
-    {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> --}}
+    <div id="data" data-user-id="{{ auth()->user()->id }}"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
-    <script src="{{ url('/js/app.js') }}"></script>
     <script>
-        $(function() {
-            const Http = window.axios;
-            const Echo = window.Echo;
-            const name = $('#nama');
-            const message = $('#message');
+        $(document).ready(function () {
+            const userId = $('#data').data('userId');
+            let chatId = 0;
 
-            $('input, textarea').keyup(function() {
-                $(this).removeClass('is-invalid');
-            });
+            function getChat() {
+                $.get("/ajax/chats",
+                    function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        chatId = data.id;
+                        setChat(data.chat_replies)
+                    },
+                    "json"
+                );
+            }
 
-            $('button').click(function() {
-                if (name.val() == '') {
-                    name.addClass('is-invalid');
-                } else if (message.val() == '') {
+            function setChat(chats) {
+                console.log(chats);
+                $('#data-message').html('');
+                $.each(chats, function (i, chat) {
+                    let rowMessage;
+                    if (chat.admin_id == userId) {
+                        rowMessage = `
+                        <li class="clearfix">
+                            <div class="message-data text-right justify-content-between">
+                                <span class="message-data-time">${chat.created_at_formated}</span>
+                            </div>
+                            <div class="message other-message float-right">${chat.message}</div>
+                        </li>
+                        `;
+                    } else {
+                        rowMessage = `
+                        <li class="clearfix">
+                            <div class="message-data justify-content-between">
+                                <span class="message-data-time">${chat.created_at_formated}</span>
+                            </div>
+                            <div class="message other-message float-right">${chat.message}</div>
+                        </li>
+                        `;
+                    }
+                    $('#data-message').append(rowMessage);
+                });
+            }
+
+            function sendMessage() {
+                let message = $('#message');
+
+                if (message.val() === '') {
                     message.addClass('is-invalid');
-                } else {
-                    Http.post("{{ url('message') }}", {
-                        'nama': name.val(),
-                        'message': message.val()
-                    }).then(() => {
-                        message.val('')
-                    });
+                    return false;
                 }
 
+                message.removeClass('is-invalid');
+
+                let data = {
+                    user_id: userId,
+                    message: message.val()
+                };
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post(`/ajax/chats/${chatId}`, data,
+                    function (data, textStatus, jqXHR) {
+                        getChat();
+                        $('#message').val('');
+                    },
+                    "json"
+                );
+            }
+
+            $('#btn-send').click(function (e) {
+                e.preventDefault();
+
+                sendMessage();
             });
 
-            let Channel = Echo.channel("message").listen("ChatEvent", (event) => {
-                $('#data-message').append(`
-                    <div class="alert alert-primary" role="alert">
-                        <strong>${event.message.name}</strong> : ${event.message.message}
-                    </div>
-                `);
+            $('#message').keypress(function (e) {
+                if(e.which == 13) {
+                    sendMessage();
+                }
             });
+
+            setInterval(() => {
+                getChat();
+            }, 10000);
+
+            getChat();
         });
     </script>
 </body>
