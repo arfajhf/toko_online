@@ -256,7 +256,7 @@
 
             </div>
         </div>
-        @can('role', 'user')
+        @can('role', ['admin', 'user'])
             <a href="{{ route('chat') }}" class="help-center  d-flex">
                 <div class="content-help">
                     <p>Butuh bantuan?</p>
