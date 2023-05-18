@@ -24,4 +24,9 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function chatUser()
+    {
+        return $this->hasOne(Chat::class);
+    }
 }
