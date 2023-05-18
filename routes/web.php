@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\ChatEvent;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\admin\CreateuserController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\UserAuthController;
@@ -13,6 +16,9 @@ use App\Http\Controllers\produk\UpsController;
 use App\Http\Controllers\user\dashboardController;
 use App\Http\Controllers\user\PemesanController;
 use App\Http\Controllers\user\ViewController;
+use App\Models\Admin;
+use App\Models\Data_chat;
+// use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,9 +94,31 @@ Route::group([
         Route::get('/pemesanan/{id}', [PemesanController::class, 'index'])->name('pemesanan');
         Route::post('/pemesanan/{id}', 'user\PemesanController@create');
         Route::get('/chat', 'user\ChatController@index')->name('chat');
+        Route::post('/message', function(Request $request){
+            $request->validate([
+                'name'=>'required',
+                'message'=>'required'
+            ]);
+
+            $user = Admin::select('nama')->where($request->name)->first();
+
+
+            $message = Data_chat::create([
+                'nama'=>$user,
+                'message'=>$request->message
+            ]);
+
+            // Data_chat::create([
+            //     'name'=>$request->name,
+            //     'message'=>$request->message
+            // ]);
+
+            ChatEvent::dispatch($message);
+        });
 
         // pimpinan
-        Route::view('/pimpinan', 'admin.pimpinan.coba')->name('pimpinan')->middleware('can:role,"admin","pimpinan"');
+        // Route::view('/pimpinan', 'admin.pimpinan.coba')->name('pimpinan')->middleware('can:role,"admin","pimpinan"');
+        Route::get('/laporan', 'admin\LaporanController@index')->name('laporan')->middleware('can:role,"admin","pimpinan"');
 
 
         // admin

@@ -55,7 +55,7 @@
                             <span>Pengirim</span></a>
                     </li>
                 @endcan
-                @can('role', 'admin')
+                @can('role', ['admin', 'pimpinan'])
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('pesanan') }}">
                             <i class="bi bi-handbag-fill"></i>
@@ -99,13 +99,13 @@
                     </li>
                 @endcan
 
-                @can('role', ['admin', 'pimpinan'])
+                {{-- @can('role', ['admin', 'pimpinan'])
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('pimpinan') }}">
+                        <a class="nav-link" href="{{ route('laporan') }}">
                             <i class="fas fa-fw fa-list"></i>
                             <span>Laporan</span></a>
                     </li>
-                @endcan
+                @endcan --}}
             </ul>
         @endcan
         {{-- @endcan --}}

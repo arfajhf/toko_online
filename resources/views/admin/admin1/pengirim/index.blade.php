@@ -16,7 +16,7 @@
                         <hr class="border border-dark border-3 opacity-75">
                     </div>
                 </div>
-                <a href="{{ route('pengirimCreate') }}" class="btn btn-outline-primary">Tambah Produk</a>
+                <a href="{{ route('pengirimCreate') }}" class="btn btn-outline-primary">Tambah Pengirim</a>
                 <table class="border-dark table mt-5 text-center">
                     <tr>
                         <th>Nama Pengirim</th>

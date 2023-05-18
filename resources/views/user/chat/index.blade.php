@@ -349,7 +349,7 @@
                                         <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                                     </a>
                                     <div class="chat-about">
-                                        <h6 class="m-b-0 align-items-center">Admin BUY-Online</h6>
+                                        <h6 class="m-b-0 align-items-center"><input type="hidden" class="form-control" id="nama" value="{{ $user->nama }}">Admin BuyOnline</h6>
                                         {{-- <small>Last seen: 2 hours ago</small> --}}
                                     </div>
                                 </div>
@@ -365,8 +365,8 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="chat-history">
-                            <ul class="m-b-0">
+                        <div class="chat-history" id="data-message">
+                            {{-- <ul class="m-b-0"> --}}
                                 {{-- <li class="clearfix">
                                     <div class="message-data">
                                         <span class="message-data-time">10:12 AM, Today</span>
@@ -380,7 +380,7 @@
                                     <div class="message my-message">Project has been already finished and I have
                                         results to show you.</div>
                                 </li> --}}
-                                <li class="clearfix">
+                                {{-- <li class="clearfix">
                                     <div class="message-data text-right justify-content-between">
                                         <span class="message-data-time">10:10 AM, Today</span>
                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
@@ -393,14 +393,14 @@
                                     </div>
                                     <div class="message my-message">Tentu, kami menjamin barang yang kami jual sangat berkualitas dan bisa bekerja dengan sangat baik</div>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
                         <div class="chat-message clearfix">
                             <div class="input-group mb-0">
+                                <input type="text" class="form-control justify-content-between" placeholder="Enter text here..." id="message">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                    <button class="btn btn-dark">Send</button>
                                 </div>
-                                <input type="text" class="form-control justify-content-between" placeholder="Enter text here...">
                             </div>
                         </div>
                     </div>
@@ -410,9 +410,47 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>
+    <script src="{{ url('/js/app.js') }}"></script>
+    <script>
+        $(function() {
+            const Http = window.axios;
+            const Echo = window.Echo;
+            const name = $('#nama');
+            const message = $('#message');
+
+            $('input, textarea').keyup(function() {
+                $(this).removeClass('is-invalid');
+            });
+
+            $('button').click(function() {
+                if (name.val() == '') {
+                    name.addClass('is-invalid');
+                } else if (message.val() == '') {
+                    message.addClass('is-invalid');
+                } else {
+                    Http.post("{{ url('message') }}", {
+                        'nama': name.val(),
+                        'message': message.val()
+                    }).then(() => {
+                        message.val('')
+                    });
+                }
+
+            });
+
+            let Channel = Echo.channel("message").listen("ChatEvent", (event) => {
+                $('#data-message').append(`
+                    <div class="alert alert-primary" role="alert">
+                        <strong>${event.message.name}</strong> : ${event.message.message}
+                    </div>
+                `);
+            });
+        });
+    </script>
 </body>
 
 </html>

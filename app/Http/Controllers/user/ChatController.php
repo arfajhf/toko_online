@@ -9,6 +9,8 @@ class ChatController extends Controller
 {
     public function index()
     {
-        return view('user.chat.index');
+        $user = auth()->user();
+
+        return view('user.chat.index', compact('user'));
     }
 }
