@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\ChatEvent;
+use App\Http\Controllers\user\ChatController;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\admin\CreateuserController;
@@ -143,5 +144,10 @@ Route::group([
         Route::get('/produk/edit/{id}', 'admin\ProdukController@edit')->name('edit.produk');
         Route::post('/produk/edit/{id}', 'admin\ProdukController@update');
         Route::get('/produk/view/{id}', 'admin\ProdukController@view');
+
+        Route::prefix('ajax')->group(function () {
+            Route::get('chats', [ChatController::class, 'getChatUser'])->name('ajax.chat.user');
+            Route::post('chats/{chat}', [ChatController::class, 'storeChatUser'])->name('ajax.chat.user.store');
+        });
     });
 });
