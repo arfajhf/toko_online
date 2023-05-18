@@ -10,6 +10,10 @@ class ChatController extends Controller
 {
     public function index()
     {
+        if (! auth()->user()->chatUser()->exists()) {
+            auth()->user()->chatUser()->create();
+        }
+
         $user = auth()->user();
 
         return view('user.chat.index', compact('user'));
