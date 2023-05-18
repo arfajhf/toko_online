@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             DataPemesananSeeder::class,
             LaporanSeeder::class,
             PengirimSeeder::class,
+            ChatSeeder::class,
+            ChatReplySeeder::class
         ]);
 
         // $this->call([
