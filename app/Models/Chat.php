@@ -11,6 +11,10 @@ class Chat extends Model
 
     protected $guarded = [];
 
+    public function user() {
+        return $this->hasOne(Admin::class, 'id', 'admin_id');
+    }
+    
     public function chat_replies()
     {
         return $this->hasMany(ChatReply::class);

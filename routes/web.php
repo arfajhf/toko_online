@@ -147,7 +147,7 @@ Route::group([
 
         Route::prefix('ajax')->group(function () {
             Route::get('chats', [ChatController::class, 'getChatUser'])->name('ajax.chat.user');
-            Route::post('chats/{chat}', [ChatController::class, 'storeChatUser'])->name('ajax.chat.user.store');
+            Route::post('chats', [ChatController::class, 'storeChatUser'])->name('ajax.chat.user.store');
         });
     });
 });
